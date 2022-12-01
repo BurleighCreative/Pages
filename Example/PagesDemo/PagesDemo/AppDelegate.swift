@@ -1,12 +1,13 @@
 import UIKit
 import Pages
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let pages = pagesControllerInCode()
     // let pages = pagesControllerInStoryboard()
 
@@ -34,13 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     for i in 0..<5 {
       if let imageURL = URL(string: "https://unsplash.it/375/667/?image=\(i+10)") {
-        let viewController = ViewController()        
-        viewController.imageView.setImage(url: imageURL)
+        let viewController = ViewController()
+        viewController.imageView.sd_setImage(with: imageURL)
+        //viewController.imageView.setImage(url: imageURL)
 
         viewControllers.append(viewController)
       }
     }
-
+    
     let pages = PagesController(viewControllers)
 
     pages.enableSwipe = true
@@ -51,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func pagesControllerInStoryboard() -> PagesController {
     let storyboardIds = ["One","Two"]
-    return PagesController(storyboardIds)
+    fatalError("Needs to be fixed")
+    //return PagesController(storyboardIds)
   }
 }

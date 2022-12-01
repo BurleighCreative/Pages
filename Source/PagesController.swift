@@ -49,11 +49,19 @@ import UIKit
 
   public private(set) var pageControl: UIPageControl?
 
-    public convenience override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
-        self.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
-        add(pages)
-    }
-    
+  public convenience init(_ pages: [UIViewController],
+                            transitionStyle: UIPageViewController.TransitionStyle = .scroll,
+                            navigationOrientation: UIPageViewController.NavigationOrientation = .horizontal,
+                            options: [UIPageViewController.OptionsKey : AnyObject]? = nil) {
+      self.init(
+        transitionStyle: transitionStyle,
+        navigationOrientation: navigationOrientation,
+        options: options
+      )
+
+    add(pages)
+  }
+        
 
   open override func viewDidLoad() {
     super.viewDidLoad()
